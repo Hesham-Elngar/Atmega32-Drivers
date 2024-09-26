@@ -38,11 +38,14 @@ SUBDIRS :=  \
 ../ECU_Layer/Ecu_Init \
 ../ECU_Layer/LED \
 ../ECU_Layer/Button \
+../ECU_Layer/DC_Motor \
+../ECU_Layer/US_Sensor \
 ../MCAL_Layer \
 ../ECU_Layer \
 ../MCAL_Layer/Gpio \
 ../MCAL_Layer/EXTI \
 ../MCAL_Layer/ADC \
+../MCAL_Layer/I2C \
 ../MCAL_Layer/USART \
 ../MCAL_Layer/Timer1 \
 ../MCAL_Layer/Timer0
@@ -51,14 +54,17 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../ECU_Layer/Button/button.c \
+../ECU_Layer/DC_Motor/motor.c \
 ../ECU_Layer/Ecu_Init/ecu_init.c \
 ../ECU_Layer/Keypad/keypad.c \
 ../ECU_Layer/LCD/LCD.c \
 ../ECU_Layer/LED/LED.c \
+../ECU_Layer/US_Sensor/US.c \
 ../main.c \
 ../MCAL_Layer/ADC/adc.c \
 ../MCAL_Layer/EXTI/EXTI.c \
 ../MCAL_Layer/Gpio/gpio.c \
+../MCAL_Layer/I2C/i2c.c \
 ../MCAL_Layer/Timer0/timer0.c \
 ../MCAL_Layer/Timer1/timer1.c \
 ../MCAL_Layer/USART/usart.c
@@ -72,56 +78,68 @@ ASM_SRCS +=
 
 OBJS +=  \
 ECU_Layer/Button/button.o \
+ECU_Layer/DC_Motor/motor.o \
 ECU_Layer/Ecu_Init/ecu_init.o \
 ECU_Layer/Keypad/keypad.o \
 ECU_Layer/LCD/LCD.o \
 ECU_Layer/LED/LED.o \
+ECU_Layer/US_Sensor/US.o \
 main.o \
 MCAL_Layer/ADC/adc.o \
 MCAL_Layer/EXTI/EXTI.o \
 MCAL_Layer/Gpio/gpio.o \
+MCAL_Layer/I2C/i2c.o \
 MCAL_Layer/Timer0/timer0.o \
 MCAL_Layer/Timer1/timer1.o \
 MCAL_Layer/USART/usart.o
 
 OBJS_AS_ARGS +=  \
 ECU_Layer/Button/button.o \
+ECU_Layer/DC_Motor/motor.o \
 ECU_Layer/Ecu_Init/ecu_init.o \
 ECU_Layer/Keypad/keypad.o \
 ECU_Layer/LCD/LCD.o \
 ECU_Layer/LED/LED.o \
+ECU_Layer/US_Sensor/US.o \
 main.o \
 MCAL_Layer/ADC/adc.o \
 MCAL_Layer/EXTI/EXTI.o \
 MCAL_Layer/Gpio/gpio.o \
+MCAL_Layer/I2C/i2c.o \
 MCAL_Layer/Timer0/timer0.o \
 MCAL_Layer/Timer1/timer1.o \
 MCAL_Layer/USART/usart.o
 
 C_DEPS +=  \
 ECU_Layer/Button/button.d \
+ECU_Layer/DC_Motor/motor.d \
 ECU_Layer/Ecu_Init/ecu_init.d \
 ECU_Layer/Keypad/keypad.d \
 ECU_Layer/LCD/LCD.d \
 ECU_Layer/LED/LED.d \
+ECU_Layer/US_Sensor/US.d \
 main.d \
 MCAL_Layer/ADC/adc.d \
 MCAL_Layer/EXTI/EXTI.d \
 MCAL_Layer/Gpio/gpio.d \
+MCAL_Layer/I2C/i2c.d \
 MCAL_Layer/Timer0/timer0.d \
 MCAL_Layer/Timer1/timer1.d \
 MCAL_Layer/USART/usart.d
 
 C_DEPS_AS_ARGS +=  \
 ECU_Layer/Button/button.d \
+ECU_Layer/DC_Motor/motor.d \
 ECU_Layer/Ecu_Init/ecu_init.d \
 ECU_Layer/Keypad/keypad.d \
 ECU_Layer/LCD/LCD.d \
 ECU_Layer/LED/LED.d \
+ECU_Layer/US_Sensor/US.d \
 main.d \
 MCAL_Layer/ADC/adc.d \
 MCAL_Layer/EXTI/EXTI.d \
 MCAL_Layer/Gpio/gpio.d \
+MCAL_Layer/I2C/i2c.d \
 MCAL_Layer/Timer0/timer0.d \
 MCAL_Layer/Timer1/timer1.d \
 MCAL_Layer/USART/usart.d
@@ -141,6 +159,13 @@ LINKER_SCRIPT_DEP+=
 
 # AVR32/GNU C Compiler
 ECU_Layer/Button/button.o: ../ECU_Layer/Button/button.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)D:\installed\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -gdwarf-2 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+ECU_Layer/DC_Motor/motor.o: ../ECU_Layer/DC_Motor/motor.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)D:\installed\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -gdwarf-2 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -175,6 +200,13 @@ ECU_Layer/LED/LED.o: ../ECU_Layer/LED/LED.c
 	@echo Finished building: $<
 	
 
+ECU_Layer/US_Sensor/US.o: ../ECU_Layer/US_Sensor/US.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)D:\installed\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -gdwarf-2 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -197,6 +229,13 @@ MCAL_Layer/EXTI/EXTI.o: ../MCAL_Layer/EXTI/EXTI.c
 	
 
 MCAL_Layer/Gpio/gpio.o: ../MCAL_Layer/Gpio/gpio.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)D:\installed\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -gdwarf-2 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL_Layer/I2C/i2c.o: ../MCAL_Layer/I2C/i2c.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)D:\installed\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -gdwarf-2 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "D:\installed\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

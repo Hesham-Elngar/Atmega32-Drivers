@@ -11,8 +11,11 @@
 
 #include "../LCD/LCD.h"
 #include "../Keypad/keypad.h"
+#include "../DC_Motor/motor.h"
 void ECU_Init();
 extern Lcd_4bit lcd1;
 extern Keypad_t keypad1;
+extern dc_motor_t CAR_M1;
+extern dc_motor_t CAR_M2;
 
 #endif /* ECU_INIT_H_ */

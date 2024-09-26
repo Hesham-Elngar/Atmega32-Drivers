@@ -127,6 +127,12 @@
     <Compile Include="ECU_Layer\Button\button.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="ECU_Layer\DC_Motor\motor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECU_Layer\DC_Motor\motor.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ECU_Layer\Ecu_Init\ecu_init.c">
       <SubType>compile</SubType>
     </Compile>
@@ -149,6 +155,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="ECU_Layer\LED\LED.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECU_Layer\US_Sensor\US.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ECU_Layer\US_Sensor\US.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -206,6 +218,8 @@
     <Folder Include="ECU_Layer\Ecu_Init" />
     <Folder Include="ECU_Layer\LED" />
     <Folder Include="ECU_Layer\Button" />
+    <Folder Include="ECU_Layer\DC_Motor" />
+    <Folder Include="ECU_Layer\US_Sensor" />
     <Folder Include="MCAL_Layer" />
     <Folder Include="ECU_Layer" />
     <Folder Include="MCAL_Layer\Gpio" />
